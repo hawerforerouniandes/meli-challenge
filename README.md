@@ -13,8 +13,8 @@ Para construir y ejecutar la aplicación necesita:
 
 Hay varias formas de ejecutar una aplicación Spring Boot en su máquina local:
 
-Opción 1. Ejecute el método `main` en la clase `com.challenge.meli.MeliChallengeApplication` desde su IDE.
-Opción 2. Con [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) .
+- Opción 1. Ejecute el método `main` en la clase `com.challenge.meli.MeliChallengeApplication` desde su IDE.
+- Opción 2. Con [Maven](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) asi:
 ```shell
 mvnw.cmd spring-boot:run
 ```
