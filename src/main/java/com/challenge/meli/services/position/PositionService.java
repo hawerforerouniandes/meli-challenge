@@ -2,6 +2,7 @@ package com.challenge.meli.services.position;
 
 import com.challenge.meli.models.Satellite;
 import com.challenge.meli.repositories.satellite.ISatelliteRepository;
+import com.challenge.meli.utils.Trilateration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,22 +24,18 @@ public class PositionService implements IPositionService{
         try {
             List<Satellite> satellites = satelliteRepository.getAllSatellites();
 
-            float xSum = 0;
-            float ySum = 0;
-            float totalWeight = 0;
+            float[][] positions = new float[satellites.size()][2];
 
-            for (int i = 0; i < distances.length; i++) {
+            for (int i = 0; i < satellites.size(); i++) {
                 Satellite satellite = satellites.get(i);
-                float weight = 1 / (float) Math.pow(distances[i], 2);
-                xSum += satellite.getPosition().getX() * weight;
-                ySum += satellite.getPosition().getY() * weight;
-                totalWeight += weight;
+                float[] position = new float[2];
+                position[0] = satellite.getPosition().getX();
+                position[1] = satellite.getPosition().getY();
+                positions[i] = position;
             }
 
-            float x = xSum / totalWeight;
-            float y = ySum / totalWeight;
+            return Trilateration.location(distances, positions);
 
-            return new float[]{x, y};
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
