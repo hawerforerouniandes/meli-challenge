@@ -4,6 +4,7 @@ import com.challenge.meli.dto.request.SatelliteRequestDto;
 import com.challenge.meli.dto.request.TopSecretRequestDto;
 import com.challenge.meli.dto.request.TopSecretSplitRequestDto;
 import com.challenge.meli.dto.response.TopSecretResponseDto;
+import com.challenge.meli.services.message.IMessageService;
 import com.challenge.meli.services.position.IPositionService;
 import com.challenge.meli.services.satellite.ISatelliteService;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,8 @@ class TopSecretServiceTest {
     private IPositionService positionService;
     @Mock
     private ISatelliteService satelliteService;
+    @Mock
+    private IMessageService messageService;
 
     @Test
     void addSatelliteDataSuccess(){
