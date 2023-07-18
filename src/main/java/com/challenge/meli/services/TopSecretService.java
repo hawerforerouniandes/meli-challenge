@@ -9,7 +9,9 @@ import com.challenge.meli.services.message.IMessageService;
 import com.challenge.meli.services.position.IPositionService;
 import com.challenge.meli.services.satellite.ISatelliteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class TopSecretService implements ITopSecretService{
@@ -31,7 +33,8 @@ public class TopSecretService implements ITopSecretService{
     }
 
     @Override
-    public TopSecretResponseDto addTopSecretData(TopSecretRequestDto request) {
+    @Async
+    public CompletableFuture<TopSecretResponseDto> addTopSecretData(TopSecretRequestDto request) {
         try {
             for (SatelliteRequestDto satelliteRequestDto: request.getSatellites()) {
                 TopSecretSplitRequestDto topSecretSplitRequestDto = new TopSecretSplitRequestDto();
@@ -41,18 +44,21 @@ public class TopSecretService implements ITopSecretService{
             }
             return getTopSecretData();
 
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
+    @Async
     public void addSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
         satelliteService.setSatelliteData(satelliteName, request);
     }
 
     @Override
-    public TopSecretResponseDto getTopSecretData() {
+    @Async
+    public CompletableFuture<TopSecretResponseDto> getTopSecretData() {
         try {
             TopSecretResponseDto response = new TopSecretResponseDto();
 
@@ -66,7 +72,7 @@ public class TopSecretService implements ITopSecretService{
 
             response.setMessage(messageService.getMessage(messages));
 
-            return response;
+            return CompletableFuture.completedFuture(response);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

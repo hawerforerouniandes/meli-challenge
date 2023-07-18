@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/topsecret_split")
@@ -36,7 +37,9 @@ public class TopSecretSplitController {
     @RequestMapping(path = "/", method = RequestMethod.GET, produces = "application/json")
     public TopSecretResponseDto getTopSecretData() {
         try {
-            return new ResponseEntity<TopSecretResponseDto>(this.service.getTopSecretData(), HttpStatus.OK).getBody();
+            CompletableFuture<TopSecretResponseDto> futureResult = this.service.getTopSecretData();
+
+            return new ResponseEntity<TopSecretResponseDto>(futureResult.get(), HttpStatus.OK).getBody();
         }catch (Exception e){
             String msg = e.getMessage();
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

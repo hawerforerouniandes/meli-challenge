@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/topsecret")
@@ -23,7 +24,8 @@ public class TopSecretController {
     @RequestMapping(path = "/", method = RequestMethod.POST, produces = "application/json")
     public TopSecretResponseDto topSecret(@RequestBody TopSecretRequestDto request) {
         try {
-            return new ResponseEntity<TopSecretResponseDto>(this.service.addTopSecretData(request), HttpStatus.OK).getBody();
+            CompletableFuture<TopSecretResponseDto> futureResult = this.service.addTopSecretData(request);
+            return new ResponseEntity<TopSecretResponseDto>(futureResult.get(), HttpStatus.OK).getBody();
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
