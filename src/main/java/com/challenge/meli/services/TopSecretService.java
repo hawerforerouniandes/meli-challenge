@@ -1,7 +1,10 @@
 package com.challenge.meli.services;
 
+import com.challenge.meli.dto.request.SatelliteRequestDto;
 import com.challenge.meli.dto.request.TopSecretRequestDto;
+import com.challenge.meli.dto.request.TopSecretSplitRequestDto;
 import com.challenge.meli.dto.response.TopSecretResponseDto;
+import com.challenge.meli.repositories.ISatelliteRepository;
 import com.challenge.meli.services.message.IMessageService;
 import com.challenge.meli.services.position.IPositionService;
 import com.challenge.meli.services.satellite.ISatelliteService;
@@ -15,6 +18,8 @@ public class TopSecretService implements ITopSecretService{
     private IPositionService positionService;
     private IMessageService messageService;
 
+
+
     @Autowired
     public TopSecretService(ISatelliteService satelliteService,
                             IPositionService positionService,
@@ -26,16 +31,38 @@ public class TopSecretService implements ITopSecretService{
     }
 
     @Override
-    public TopSecretResponseDto topSecret(TopSecretRequestDto request) {
+    public TopSecretResponseDto addTopSecretData(TopSecretRequestDto request) {
+        try {
+            for (SatelliteRequestDto satelliteRequestDto: request.getSatellites()) {
+                TopSecretSplitRequestDto topSecretSplitRequestDto = new TopSecretSplitRequestDto();
+                topSecretSplitRequestDto.setDistance(satelliteRequestDto.getDistance());
+                topSecretSplitRequestDto.setMessage(satelliteRequestDto.getMessage());
+                addSatelliteData(satelliteRequestDto.getName(), topSecretSplitRequestDto);
+            }
+            return getTopSecretData();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
+        satelliteService.setSatelliteData(satelliteName, request);
+    }
+
+    @Override
+    public TopSecretResponseDto getTopSecretData() {
         try {
             TopSecretResponseDto response = new TopSecretResponseDto();
 
-            float[] distances = satelliteService.getDistances(request);
-            String[][] messages = satelliteService.getMessages(request);
+            float[] distances = satelliteService.getDistances();
+            float[][] positions = satelliteService.getPositions();
+            String[][] messages  = satelliteService.getMessages();
 
-            float[] positions = positionService.getLocation(distances);
-            response.getPosition().setX(positions[0]);
-            response.getPosition().setY(positions[1]);
+            float[] location = positionService.getLocation(distances, positions);
+            response.getPosition().setX(location[0]);
+            response.getPosition().setY(location[1]);
 
             response.setMessage(messageService.getMessage(messages));
 

@@ -1,41 +1,104 @@
 package com.challenge.meli.services.satellite;
 
 import com.challenge.meli.dto.request.TopSecretRequestDto;
+import com.challenge.meli.dto.request.TopSecretSplitRequestDto;
+import com.challenge.meli.models.Satellite;
+import com.challenge.meli.repositories.ISatelliteRepository;
+import com.challenge.meli.services.message.IMessageService;
+import com.challenge.meli.services.position.IPositionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class SatelliteService implements ISatelliteService{
 
+    private final Map<String, TopSecretSplitRequestDto> satelliteDataMap = new HashMap<>();
+    private ISatelliteRepository satelliteRepository;
+
+    @Autowired
+    public SatelliteService(ISatelliteRepository satelliteRepository)
+    {
+        this.satelliteRepository = satelliteRepository;
+    }
+
     @Override
-    public float[] getDistances(TopSecretRequestDto request)  {
-        try {
-            float[] distances = new float[request.getSatellites().size()];
-            for (int i=0 ; i < request.getSatellites().size(); i++) {
-                float distance = request.getSatellites().get(i).getDistance();
-                if (distance <= 0)
-                    throw new Exception("Distances to emitter not found");
-                distances[i] = distance;
-            }
-            return distances;
+    public void setSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
+        satelliteDataMap.put(satelliteName, request);
+    }
+
+    @Override
+    public Map<String, TopSecretSplitRequestDto> getSatelliteData() {
+        return satelliteDataMap;
+    }
+
+    @Override
+    public float[] getDistances()  {
+
+         try {
+             if (satelliteDataMap.size() < 3)
+                 throw new Exception("There is not enough information");
+
+             float[] distances = new float[satelliteDataMap.size()];
+
+             int index = 0;
+             for (Map.Entry<String, TopSecretSplitRequestDto> entry :  satelliteDataMap.entrySet()) {
+                 TopSecretSplitRequestDto value = entry.getValue();
+                 distances[index] = value.getDistance();
+                 index ++;
+             }
+             return distances;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public String[][] getMessages(TopSecretRequestDto request) {
+    public float[][] getPositions()  {
+
+        try {
+            if (satelliteDataMap.size() < 3)
+                throw new Exception("There is not enough information");
+
+            float[][] positions = new float[satelliteDataMap.size()][2];
+
+            int index = 0;
+            for (Map.Entry<String, TopSecretSplitRequestDto> entry :  satelliteDataMap.entrySet()) {
+                String key = entry.getKey();
+                Satellite satellite = satelliteRepository.getSatellite(key);
+                float[] position = new float[2];
+                position[0] = satellite.getPosition().getX();
+                position[1] = satellite.getPosition().getY();
+                positions[index] = position;
+                index ++;
+
+            }
+            return positions;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String[][] getMessages() {
         try {
             int messageSize = 0;
 
-            for (int i=0 ; i < request.getSatellites().size(); i++){
-                if(request.getSatellites().get(i).getMessage().length > messageSize){
-                    messageSize = request.getSatellites().get(i).getMessage().length;
+            List<TopSecretSplitRequestDto> satelliteDataList = new ArrayList<>(satelliteDataMap.values());
+
+            for (int i=0 ; i < satelliteDataList.size(); i++){
+                if(satelliteDataList.get(i).getMessage().length > messageSize){
+                    messageSize = satelliteDataList.get(i).getMessage().length;
                 }
             }
 
-            String[][] messages = new String[request.getSatellites().size()][messageSize];
-            for (int i=0 ; i < request.getSatellites().size(); i++){
-                messages[i] = request.getSatellites().get(i).getMessage();
+            String[][] messages = new String[satelliteDataList.size()][messageSize];
+            for (int i=0 ; i < satelliteDataList.size(); i++){
+                messages[i] = satelliteDataList.get(i).getMessage();
             }
 
             return messages;

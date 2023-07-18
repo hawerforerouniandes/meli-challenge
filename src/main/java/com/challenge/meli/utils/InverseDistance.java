@@ -1,6 +1,6 @@
 package com.challenge.meli.utils;
 
-public class Trilateration {
+public class InverseDistance {
         public static float[] location(float[] distances, float[][] positions){
 
             float xSum = 0;

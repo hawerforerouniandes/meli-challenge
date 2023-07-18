@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping(value = "/topsecret/")
+@RequestMapping("/topsecret")
 public class TopSecretController {
 
     private ITopSecretService service;
@@ -20,10 +20,10 @@ public class TopSecretController {
         this.service = service;
     }
     @ResponseBody
-    @RequestMapping(path = "", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/", method = RequestMethod.POST, produces = "application/json")
     public TopSecretResponseDto topSecret(@RequestBody TopSecretRequestDto request) {
         try {
-            return new ResponseEntity<TopSecretResponseDto>(this.service.topSecret(request), HttpStatus.OK).getBody();
+            return new ResponseEntity<TopSecretResponseDto>(this.service.addTopSecretData(request), HttpStatus.OK).getBody();
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }

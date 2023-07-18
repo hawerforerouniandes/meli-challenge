@@ -1,7 +1,7 @@
 package com.challenge.meli.services.message;
 
 import com.challenge.meli.models.Satellite;
-import com.challenge.meli.repositories.satellite.ISatelliteRepository;
+import com.challenge.meli.repositories.ISatelliteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
