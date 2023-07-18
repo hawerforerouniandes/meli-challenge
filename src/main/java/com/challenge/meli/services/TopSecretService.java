@@ -36,6 +36,9 @@ public class TopSecretService implements ITopSecretService{
     @Async
     public CompletableFuture<TopSecretResponseDto> addTopSecretData(TopSecretRequestDto request) {
         try {
+            if(request == null)
+                throw new Exception("request is null");
+
             for (SatelliteRequestDto satelliteRequestDto: request.getSatellites()) {
                 TopSecretSplitRequestDto topSecretSplitRequestDto = new TopSecretSplitRequestDto();
                 topSecretSplitRequestDto.setDistance(satelliteRequestDto.getDistance());
@@ -53,7 +56,13 @@ public class TopSecretService implements ITopSecretService{
     @Override
     @Async
     public void addSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
-        satelliteService.setSatelliteData(satelliteName, request);
+        try {
+            if(request == null)
+                throw new Exception("request is null");
+            satelliteService.setSatelliteData(satelliteName, request);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -65,6 +74,9 @@ public class TopSecretService implements ITopSecretService{
             float[] distances = satelliteService.getDistances();
             float[][] positions = satelliteService.getPositions();
             String[][] messages  = satelliteService.getMessages();
+
+            if(distances.length == 0 || distances.length == 0 || distances.length == 0)
+                throw new Exception("There is not enough information");
 
             float[] location = positionService.getLocation(distances, positions);
             response.getPosition().setX(location[0]);

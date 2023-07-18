@@ -7,6 +7,7 @@ import com.challenge.meli.repositories.ISatelliteRepository;
 import com.challenge.meli.services.message.IMessageService;
 import com.challenge.meli.services.position.IPositionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class SatelliteService implements ISatelliteService{
 
     private final Map<String, TopSecretSplitRequestDto> satelliteDataMap = new HashMap<>();
     private ISatelliteRepository satelliteRepository;
+
+    @Value("${satellites.size}")
+    private String satellitesSize;
 
     @Autowired
     public SatelliteService(ISatelliteRepository satelliteRepository)
@@ -40,7 +44,7 @@ public class SatelliteService implements ISatelliteService{
     public float[] getDistances()  {
 
          try {
-             if (satelliteDataMap.size() < 3)
+             if (satelliteDataMap.size() < Integer.parseInt(satellitesSize))
                  throw new Exception("There is not enough information");
 
              float[] distances = new float[satelliteDataMap.size()];
