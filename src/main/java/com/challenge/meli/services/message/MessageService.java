@@ -10,17 +10,15 @@ import java.util.List;
 @Component
 public class MessageService implements IMessageService{
 
-    private ISatelliteRepository satelliteRepository;
-
     @Autowired
-    public MessageService(ISatelliteRepository satelliteRepository) {
-        this.satelliteRepository = satelliteRepository;
+    public MessageService() {
     }
 
     @Override
     public String getMessage(String[]... messages) {
         try {
-            List<Satellite> satellites = satelliteRepository.getAllSatellites();
+            if (messages.length == 0)
+                throw new Exception("Null message");
 
             int messageLength = 0;
             for (String[] message : messages) {
