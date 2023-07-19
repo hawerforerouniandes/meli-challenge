@@ -25,6 +25,7 @@ mvnw.cmd spring-boot:run
 ```shell
 http://localhost:8080/swagger-ui/index.html
 ```
+![Swagger](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/swagger.png)
 ## Ejecutar pruebas unitarias
 1. Hay varias formas de ejecutar las pruebas unitarias en su máquina local:
 - Opción 1. Ejecute el método `Run tests` en el directorio  `com.challenge.meli` desde su IDE.
@@ -33,4 +34,5 @@ http://localhost:8080/swagger-ui/index.html
 mvn test
 ```
 2. Una vez ejecutadas las pruebas podemos visualizar el reporte de covertura en la siguiente ruta `target/site/jacoco/index.html`
+![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage.png)
 
