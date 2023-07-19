@@ -1,3 +1,2 @@
 runtime: java17
 instance_class: F1
-entrypoint: java -jar meli-0.0.1-SNAPSHOT.war
