@@ -113,7 +113,7 @@ class TopSecretServiceTest {
         request.getSatellites().add(satelliteSato);
 
         float[] distances = {satelliteKenobi.getDistance(), satelliteKywalker.getDistance(), satelliteSato.getDistance()};
-        float[][] positions = {{500,-200},{100,-100},{500,100}};
+        float[][] positions = {{-500,-200},{100,-100},{500,100}};
         float[] location = {1,1};
 
         when(satelliteService.getDistances()).thenReturn(distances);

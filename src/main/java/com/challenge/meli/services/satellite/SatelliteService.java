@@ -34,8 +34,6 @@ public class SatelliteService implements ISatelliteService{
     public void setSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
         satelliteDataMap.put(satelliteName, request);
     }
-
-    @Override
     public Map<String, TopSecretSplitRequestDto> getSatelliteData() {
         return satelliteDataMap;
     }

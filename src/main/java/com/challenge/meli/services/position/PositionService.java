@@ -8,17 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class PositionService implements IPositionService{
 
-    private ISatelliteRepository satelliteRepository;
-
     @Autowired
-    public PositionService(ISatelliteRepository satelliteRepository) {
-        this.satelliteRepository = satelliteRepository;
+    public PositionService() {
+
     }
 
     @Override
     public float[] getLocation(float[] distances, float[][] positions){
 
         try {
+            if (distances.length != positions.length)
+                throw new Exception("Distances and positions do not match");
+
             return InverseDistance.location(distances, positions);
         } catch (Exception e) {
             throw new RuntimeException(e);
