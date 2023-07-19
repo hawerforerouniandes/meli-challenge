@@ -15,8 +15,7 @@
 	<name>meli</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.source>11</maven.compiler.source>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,11 +41,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
-			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
