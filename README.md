@@ -34,5 +34,5 @@ http://localhost:8080/swagger-ui/index.html
 mvn test
 ```
 2. Una vez ejecutadas las pruebas podemos visualizar el reporte de covertura en la siguiente ruta `target/site/jacoco/index.html`
-![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage.png)
+![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage2.png)
 
