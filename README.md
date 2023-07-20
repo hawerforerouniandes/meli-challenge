@@ -73,3 +73,18 @@ docker run -d -p 8080:8080 meli-challenge-v1
 - URL del API: [https://meli-challengue.uc.r.appspot.com/](https://meli-challengue.uc.r.appspot.com/)
 - Swagger: [https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html](https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html)
 - Postman: [https://documenter.getpostman.com/view/1968395/2s946idX9T](https://documenter.getpostman.com/view/1968395/2s946idX9T)
+
+## Lógica matemática 🔢
+El método `float[] getLocation(float[] distances, float[][] positions)` se resolvio con la ecuación matemática de promedio ponderado. La ecuación se deriva del concepto de centro de masa ponderado y se utiliza para calcular la ubicación estimada.
+Dada una serie de puntos de referencia con coordenadas (xᵢ, yᵢ) y distancias di desde cada punto de referencia hasta la ubicación desconocida, la ecuación se define de la siguiente manera:
+```shell
+x = Σ(xᵢ * wᵢ) / Σwᵢ
+y = Σ(yᵢ * wᵢ) / Σwᵢ
+```
+- x, y son las coordenadas de la ubicación estimada.
+- xᵢ, yᵢ son las coordenadas  del i-ésimo punto de referencia.
+- di es la distancia desde el i-ésimo punto de referencia hasta la ubicación desconocida.
+- wᵢ es el peso asignado al i-ésimo punto de referencia, calculado como el inverso del cuadrado de la distancia: wᵢ = 1 / (di^2).
+- Σ denota la suma sobre todos los puntos de referencia.
+
+
