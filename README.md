@@ -29,7 +29,7 @@ git clone https://github.com/hawerforerouniandes/meli-challenge.git
 http://localhost:8080/swagger-ui/index.html
 ```
 ![Swagger](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/swagger.png)
-4. (Opcional) ejecución con Docker
+4. (Opcional) Ejecución con Docker
 ```shell
 docker build -t meli-challenge-v1 . 
 docker run -d -p 8080:8080 meli-challenge-v1
@@ -43,7 +43,25 @@ docker run -d -p 8080:8080 meli-challenge-v1
 ```
 ![test](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/test.png)
 2. Una vez ejecutadas las pruebas podemos visualizar el reporte de covertura en la siguiente ruta `target/site/jacoco/index.html`
-![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage2.png)
+![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage3.png)
+## Análisis de código 🐞
+1. Instalar y configurar la herramienta [SonarQube](https://www.sonarsource.com/) en su equipo
+```shell
+https://www.sonarsource.com/
+```
+
+
+2. Crear un nuevo proyecto y generar el token de identificación
+3. Una vez se tiene creado el proyecto e inicializado sonar, podemos ejecutar el análisis de nuestra aplicación:
+```shell
+./mvnw clean verify sonar:sonar \
+   -Dsonar.projectKey=meli-chanllege-api \
+   -Dsonar.projectName='meli-chanllege-api' \
+   -Dsonar.host.url=http://localhost:9000 \
+   -Dsonar.token=<token_id>
+```
+![Sonar](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/sonar.png)
+
 ## Estructura proyecto 📂
 ````
 ├── .github   # Pipeline github actions
