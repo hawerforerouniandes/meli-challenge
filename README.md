@@ -44,13 +44,11 @@ docker run -d -p 8080:8080 meli-challenge-v1
 ![test](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/test.png)
 2. Una vez ejecutadas las pruebas podemos visualizar el reporte de covertura en la siguiente ruta `target/site/jacoco/index.html`
 ![Coverage](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/coverage3.png)
-## Análisis de código 🐞
+## Análisis de código 📝
 1. Instalar y configurar la herramienta [SonarQube](https://www.sonarsource.com/) en su equipo
 ```shell
 https://www.sonarsource.com/
 ```
-
-
 2. Crear un nuevo proyecto y generar el token de identificación
 3. Una vez se tiene creado el proyecto e inicializado sonar, podemos ejecutar el análisis de nuestra aplicación:
 ```shell
@@ -82,17 +80,6 @@ https://www.sonarsource.com/
 └────── pom.xml # Descriptor del proyecto
 └────── README.md # Estás aquí
 ````
-## Despliegue en producción 🌍
-1. La aplicación Spring Boot es desplegada en el entorno estándar de App Engine de GCP, en el siguiente se encuentra el codelab oficial de Google con el paso a paso actualizado en abr 21, 2023
-
-[https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0](https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0)
-
-2. Actualmente la aplicación se encuentra desplegada en las siguintes rutas:
-
-- URL del API: [https://meli-challengue.uc.r.appspot.com/](https://meli-challengue.uc.r.appspot.com/)
-- Swagger: [https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html](https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html)
-- Postman: [https://documenter.getpostman.com/view/1968395/2s946idX9T](https://documenter.getpostman.com/view/1968395/2s946idX9T)
-
 ## Lógica matemática 🔢
 El método `float[] getLocation(float[] distances, float[][] positions)` se resolvio con la ecuación matemática de promedio ponderado. La ecuación se deriva del concepto de centro de masa ponderado y se utiliza para calcular la ubicación estimada.
 Dada una serie de puntos de referencia con coordenadas (xᵢ, yᵢ) y distancias di desde cada punto de referencia hasta la ubicación desconocida, la ecuación se define de la siguiente manera:
@@ -105,5 +92,15 @@ y = Σ(yᵢ * wᵢ) / Σwᵢ
 - di es la distancia desde el i-ésimo punto de referencia hasta la ubicación desconocida.
 - wᵢ es el peso asignado al i-ésimo punto de referencia, calculado como el inverso del cuadrado de la distancia: wᵢ = 1 / (di^2).
 - Σ denota la suma sobre todos los puntos de referencia.
+## Despliegue en producción 🌍
+1. La aplicación Spring Boot es desplegada en el entorno estándar de App Engine de GCP, en el siguiente se encuentra el codelab oficial de Google con el paso a paso actualizado en abr 21, 2023
+
+[https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0](https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0)
+
+2. Actualmente la aplicación se encuentra desplegada en las siguintes rutas:
+
+- URL del API: [https://meli-challengue.uc.r.appspot.com/](https://meli-challengue.uc.r.appspot.com/)
+- Swagger: [https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html](https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html)
+- Postman: [https://documenter.getpostman.com/view/1968395/2s946idX9T](https://documenter.getpostman.com/view/1968395/2s946idX9T)
 
 
