@@ -1,5 +1,5 @@
 # Meli challenge
-Este proyecto se genero com [Spring Boot](http://projects.spring.io/spring-boot/) 
+Este proyecto se genero con [Spring Boot](http://projects.spring.io/spring-boot/) 
 - Proyecto: Maven
 - Lenguaje: Java 17
 - Version 3.0.5
@@ -22,7 +22,8 @@ git clone https://github.com/hawerforerouniandes/meli-challenge.git
 ./mvnw spring-boot:run 
 ```
 ![run](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/run.png)
-<sup><sub>Nota: Verificar que el puerto 8080 este libre</sub></sup>
+`Nota: Verificar que el puerto 8080 este libre`
+
 3. El servidor Apache Tomcat integrado de Spring Boot actúa como un servidor web y escucha las solicitudes en el puerto localhost 8080. Abra su navegador y e ingrese la siguiente dirección para acceder directamente al Swagger de api:
 ```shell
 http://localhost:8080/swagger-ui/index.html
