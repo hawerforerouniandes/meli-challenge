@@ -22,12 +22,12 @@ public class TopSecretSplitController {
     }
 
     @PostMapping("/{satellite_name}")
-    public ResponseEntity<Void> addSatelliteData(
+    public Boolean addSatelliteData(
             @PathVariable String satellite_name,
             @RequestBody TopSecretSplitRequestDto request) {
         try {
-            this.service.addSatelliteData(satellite_name, request);
-            return ResponseEntity.ok().build();
+            CompletableFuture<Boolean> futureResult = this.service.addSatelliteData(satellite_name, request);
+            return new ResponseEntity<Boolean>(futureResult.get(), HttpStatus.OK).getBody();
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }

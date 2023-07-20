@@ -7,6 +7,6 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ITopSecretService {
     CompletableFuture<TopSecretResponseDto> addTopSecretData(TopSecretRequestDto request);
-    void addSatelliteData(String satelliteName, TopSecretSplitRequestDto request);
+    CompletableFuture<Boolean> addSatelliteData(String satelliteName, TopSecretSplitRequestDto request);
     CompletableFuture<TopSecretResponseDto> getTopSecretData();
 }

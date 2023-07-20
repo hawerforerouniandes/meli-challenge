@@ -4,7 +4,6 @@ import com.challenge.meli.dto.request.SatelliteRequestDto;
 import com.challenge.meli.dto.request.TopSecretRequestDto;
 import com.challenge.meli.dto.request.TopSecretSplitRequestDto;
 import com.challenge.meli.dto.response.TopSecretResponseDto;
-import com.challenge.meli.repositories.ISatelliteRepository;
 import com.challenge.meli.services.message.IMessageService;
 import com.challenge.meli.services.position.IPositionService;
 import com.challenge.meli.services.satellite.ISatelliteService;
@@ -55,11 +54,14 @@ public class TopSecretService implements ITopSecretService{
 
     @Override
     @Async
-    public void addSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
+    public CompletableFuture<Boolean> addSatelliteData(String satelliteName, TopSecretSplitRequestDto request) {
         try {
             if(request == null)
                 throw new Exception("request is null");
+            if(request.getDistance() <= 0)
+                throw new Exception("request distance is null");
             satelliteService.setSatelliteData(satelliteName, request);
+            return CompletableFuture.completedFuture(true);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
