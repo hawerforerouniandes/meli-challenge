@@ -28,6 +28,11 @@ git clone https://github.com/hawerforerouniandes/meli-challenge.git
 http://localhost:8080/swagger-ui/index.html
 ```
 ![Swagger](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/swagger.png)
+4. (Opcional) ejecución con Docker
+```shell
+docker build -t meli-challenge-v1 . 
+docker run -d -p 8080:8080 meli-challenge-v1
+```
 ## Ejecutar pruebas unitarias 🐞
 1. Hay varias formas de ejecutar las pruebas unitarias en su máquina local:
 - Opción 1. Ejecute el método `Run tests` en el directorio  `com.challenge.meli` desde su IDE.
