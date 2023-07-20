@@ -58,3 +58,13 @@ http://localhost:8080/swagger-ui/index.html
 └────── pom.xml # Descriptor del proyecto
 └────── README.md # Estás aquí
 ````
+## Despliegue en producción 🌍
+1. La aplicación Spring Boot es desplegada en el entorno estándar de App Engine de GCP, en el siguiente se encuentra el codelab oficial de Google con el paso a paso actualizado en abr 21, 2023
+
+[https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
+
+2. Actualmente la aplicación se encuentra desplegada en las siguintes rutas:
+
+- URL del API: [https://meli-challengue.uc.r.appspot.com/](https://meli-challengue.uc.r.appspot.com/)
+- Swagger: [https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html](https://meli-challengue.uc.r.appspot.com/swagger-ui/index.html)
+- Postman: [https://documenter.getpostman.com/view/1968395/2s946idX9T](https://documenter.getpostman.com/view/1968395/2s946idX9T)
