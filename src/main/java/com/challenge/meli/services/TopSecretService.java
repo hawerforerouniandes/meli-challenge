@@ -77,7 +77,7 @@ public class TopSecretService implements ITopSecretService{
             float[][] positions = satelliteService.getPositions();
             String[][] messages  = satelliteService.getMessages();
 
-            if(distances.length == 0 || distances.length == 0 || distances.length == 0)
+            if(distances.length == 0 || positions.length == 0 || messages.length == 0)
                 throw new Exception("There is not enough information");
 
             float[] location = positionService.getLocation(distances, positions);

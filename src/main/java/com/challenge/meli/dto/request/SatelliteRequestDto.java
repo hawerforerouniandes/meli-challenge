@@ -8,12 +8,6 @@ public class SatelliteRequestDto {
     public SatelliteRequestDto() {
     }
 
-    public SatelliteRequestDto(String name, float distance, String[] message) {
-        this.name = name;
-        this.distance = distance;
-        this.message = message;
-    }
-
     public String getName() {
         return name;
     }

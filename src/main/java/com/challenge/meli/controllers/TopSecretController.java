@@ -26,7 +26,10 @@ public class TopSecretController {
         try {
             CompletableFuture<TopSecretResponseDto> futureResult = this.service.addTopSecretData(request);
             return new ResponseEntity<TopSecretResponseDto>(futureResult.get(), HttpStatus.OK).getBody();
-        }catch (Exception e){
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }

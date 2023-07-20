@@ -14,10 +14,13 @@ public class InverseDistance {
                 totalWeight += weight;
             }
 
-            float x = xSum / totalWeight;
-            float y = ySum / totalWeight;
-
-            return new float[]{x, y};
+            if (totalWeight != 0) {
+                float x = xSum / totalWeight;
+                float y = ySum / totalWeight;
+                return new float[]{x, y};
+            } else {
+                throw new ArithmeticException("Division by zero: totalWeight is zero");
+            }
         }
 
     }

@@ -6,12 +6,6 @@ public class TopSecretSplitRequestDto {
 
     public TopSecretSplitRequestDto() {
     }
-
-    public TopSecretSplitRequestDto(float distance, String[] message) {
-        this.distance = distance;
-        this.message = message;
-    }
-
     public float getDistance() {
         return distance;
     }

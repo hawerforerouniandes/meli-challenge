@@ -115,9 +115,12 @@ class TopSecretServiceTest {
         float[] distances = {satelliteKenobi.getDistance(), satelliteKywalker.getDistance(), satelliteSato.getDistance()};
         float[][] positions = {{-500,-200},{100,-100},{500,100}};
         float[] location = {1,1};
+        String[][] messages = {satelliteKenobi.getMessage(),satelliteKywalker.getMessage(),satelliteSato.getMessage()};
+
 
         when(satelliteService.getDistances()).thenReturn(distances);
         when(satelliteService.getPositions()).thenReturn(positions);
+        when(satelliteService.getMessages()).thenReturn(messages);
         when(positionService.getLocation(distances,positions )).thenReturn(location);
 
         CompletableFuture<TopSecretResponseDto> response = service.addTopSecretData(request);

@@ -28,8 +28,11 @@ public class TopSecretSplitController {
         try {
             CompletableFuture<Boolean> futureResult = this.service.addSatelliteData(satellite_name, request);
             return new ResponseEntity<Boolean>(futureResult.get(), HttpStatus.OK).getBody();
-        }catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
 
@@ -40,9 +43,11 @@ public class TopSecretSplitController {
             CompletableFuture<TopSecretResponseDto> futureResult = this.service.getTopSecretData();
 
             return new ResponseEntity<TopSecretResponseDto>(futureResult.get(), HttpStatus.OK).getBody();
-        }catch (Exception e){
-            String msg = e.getMessage();
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
 
