@@ -61,7 +61,7 @@ http://localhost:8080/swagger-ui/index.html
 ## Despliegue en producción 🌍
 1. La aplicación Spring Boot es desplegada en el entorno estándar de App Engine de GCP, en el siguiente se encuentra el codelab oficial de Google con el paso a paso actualizado en abr 21, 2023
 
-[https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
+[https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0](https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0)
 
 2. Actualmente la aplicación se encuentra desplegada en las siguintes rutas:
 
