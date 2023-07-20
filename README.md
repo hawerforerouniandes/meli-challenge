@@ -77,6 +77,8 @@ https://www.sonarsource.com/
 |   |    └── resources   # propiedades de la app
 |   ├── test     # Test unitarios
 |   ├── taget    # Archivos generados para despliegue
+├── info       # Información de apoyo 
+|   ├── postman     # Colección y ambientes para pruebas http
 └────── pom.xml # Descriptor del proyecto
 └────── README.md # Estás aquí
 ````
