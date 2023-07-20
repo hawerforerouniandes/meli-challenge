@@ -23,6 +23,7 @@ git clone https://github.com/hawerforerouniandes/meli-challenge.git
 ```
 ![run](https://raw.githubusercontent.com/hawerforerouniandes/assets/master/img/run.png)
 `Nota: Verificar que el puerto 8080 este libre`
+
 3. El servidor Apache Tomcat integrado de Spring Boot actúa como un servidor web y escucha las solicitudes en el puerto localhost 8080. Abra su navegador y e ingrese la siguiente dirección para acceder directamente al Swagger de api:
 ```shell
 http://localhost:8080/swagger-ui/index.html
