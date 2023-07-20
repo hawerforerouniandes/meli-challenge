@@ -1,5 +1,5 @@
 # Meli challenge
-Este proyecto se genero com [Spring Boot](http://projects.spring.io/spring-boot/) 
+Este proyecto se genero con [Spring Boot](http://projects.spring.io/spring-boot/) 
 - Proyecto: Maven
 - Lenguaje: Java 17
 - Version 3.0.5
